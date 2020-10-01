@@ -25,12 +25,15 @@ using Nop.Services.Orders;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
 using Nop.Services.Stores;
+using Nop.Services.Vendors;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Areas.Admin.Models.Orders;
 using Nop.Web.Framework.Extensions;
 using Nop.Web.Framework.Factories;
 using Nop.Web.Framework.Models.Extensions;
+using Nop.Web.Models.Catalog;
+using ProductTagModel = Nop.Web.Areas.Admin.Models.Catalog.ProductTagModel;
 
 namespace Nop.Web.Areas.Admin.Factories
 {
@@ -189,11 +192,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
             foreach (var warehouse in _shippingService.GetAllWarehouses())
             {
-                var model = new ProductWarehouseInventoryModel
-                {
-                    WarehouseId = warehouse.Id,
-                    WarehouseName = warehouse.Name
-                };
+                var model = new ProductWarehouseInventoryModel {WarehouseId = warehouse.Id, WarehouseName = warehouse.Name};
 
                 if (product != null)
                 {
@@ -306,12 +305,7 @@ namespace Nop.Web.Areas.Admin.Factories
                     var attributeValues = _productAttributeService.GetProductAttributeValues(attribute.Id);
                     foreach (var attributeValue in attributeValues)
                     {
-                        var attributeValueModel = new ProductAttributeConditionModel.ProductAttributeValueModel
-                        {
-                            Id = attributeValue.Id,
-                            Name = attributeValue.Name,
-                            IsPreSelected = attributeValue.IsPreSelected
-                        };
+                        var attributeValueModel = new ProductAttributeConditionModel.ProductAttributeValueModel {Id = attributeValue.Id, Name = attributeValue.Name, IsPreSelected = attributeValue.IsPreSelected};
                         attributeModel.Values.Add(attributeValueModel);
                     }
 
@@ -614,8 +608,8 @@ namespace Nop.Web.Areas.Admin.Factories
         #endregion
 
         #region Methods
-
-        /// <summary>
+        
+    /// <summary>
         /// Prepare product search model
         /// </summary>
         /// <param name="searchModel">Product search model</param>

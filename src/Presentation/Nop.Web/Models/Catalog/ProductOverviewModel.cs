@@ -27,6 +27,8 @@ namespace Nop.Web.Models.Catalog
 
         public bool MarkAsNew { get; set; }
 
+        public VendorOverViewModel Vendor { get; set; }
+        
         //price
         public ProductPriceModel ProductPrice { get; set; }
         //picture
@@ -66,5 +68,13 @@ namespace Nop.Web.Models.Catalog
         }
 
 		#endregion
+    }
+    
+    public partial class VendorOverViewModel : BaseNopEntityModel
+    {
+        public string VendorName { get; set; }
+        public string VendorDescription { get; set; }
+        public Dictionary<string,string> Attributes { get; set; }
+        
     }
 }

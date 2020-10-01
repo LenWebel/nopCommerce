@@ -32,6 +32,12 @@
         <h2 class="product-title">
             <a href="@Url.RouteUrl("Product", new {SeName = Model.SeName})">@Model.Name</a>
         </h2>
+        @if (Model.Vendor?.VendorName != null)
+        {
+            <div class="product-vendor">
+                <p>@T("ProductBox.VendorLabel") @Model.Vendor.VendorName</p>
+            </div>
+        }
         @if (catalogSettings.ShowSkuOnCatalogPages && !string.IsNullOrEmpty(Model.Sku))
         {
             <div class="sku">

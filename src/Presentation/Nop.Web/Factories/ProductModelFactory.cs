@@ -73,6 +73,7 @@ namespace Nop.Web.Factories
         private readonly IVendorService _vendorService;
         private readonly IWebHelper _webHelper;
         private readonly IWorkContext _workContext;
+        private readonly IVendorAttributeService _vendorAttributeService;
         private readonly MediaSettings _mediaSettings;
         private readonly OrderSettings _orderSettings;
         private readonly SeoSettings _seoSettings;
@@ -119,7 +120,8 @@ namespace Nop.Web.Factories
             OrderSettings orderSettings,
             SeoSettings seoSettings,
             ShippingSettings shippingSettings,
-            VendorSettings vendorSettings)
+            VendorSettings vendorSettings,  
+            IVendorAttributeService vendorAttributeService)
         {
             _captchaSettings = captchaSettings;
             _catalogSettings = catalogSettings;
@@ -158,6 +160,7 @@ namespace Nop.Web.Factories
             _seoSettings = seoSettings;
             _shippingSettings = shippingSettings;
             _vendorSettings = vendorSettings;
+            _vendorAttributeService = vendorAttributeService;
         }
 
         #endregion
@@ -1108,6 +1111,12 @@ namespace Nop.Web.Factories
                         (!product.MarkAsNewStartDateTimeUtc.HasValue || product.MarkAsNewStartDateTimeUtc.Value < DateTime.UtcNow) &&
                         (!product.MarkAsNewEndDateTimeUtc.HasValue || product.MarkAsNewEndDateTimeUtc.Value > DateTime.UtcNow)
                 };
+                
+                if (true /*prepareVendormodel*/)
+                {
+                    
+                    model.Vendor = PrepareVendorOverviewModel(product);
+                }
 
                 //price
                 if (preparePriceModel)
@@ -1136,6 +1145,24 @@ namespace Nop.Web.Factories
             return models;
         }
 
+        protected virtual VendorOverViewModel PrepareVendorOverviewModel(Product product)
+        {
+            var ar = _vendorAttributeService.GetAllVendorAttributes();
+            var model = new VendorOverViewModel() {Attributes = new Dictionary<string, string>()};
+            
+            foreach (var attribute in ar)
+            {
+                var val = _vendorAttributeService.GetVendorAttributeValueById(attribute.Id);
+                if (val?.Name != null)
+                    model.Attributes.Add(attribute.Name, val?.Name);
+            }
+
+            model.VendorName = _vendorService.GetVendorById(product.VendorId).Name;
+            model.VendorDescription = _vendorService.GetVendorById(product.VendorId).Description;
+            
+            return model;
+        }
+        
         /// <summary>
         /// Prepare the product details model
         /// </summary>
