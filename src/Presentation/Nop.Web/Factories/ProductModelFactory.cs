@@ -1157,8 +1157,8 @@ namespace Nop.Web.Factories
                     model.Attributes.Add(attribute.Name, val?.Name);
             }
 
-            model.VendorName = _vendorService.GetVendorById(product.VendorId).Name;
-            model.VendorDescription = _vendorService.GetVendorById(product.VendorId).Description;
+            model.VendorName = _vendorService.GetVendorById(product.VendorId)?.Name;
+            model.VendorDescription = _vendorService.GetVendorById(product.VendorId)?.Description;
             
             return model;
         }
