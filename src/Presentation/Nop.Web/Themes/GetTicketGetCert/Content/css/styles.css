@@ -6703,14 +6703,14 @@ pre {
 	width: 100%;
 }
 .header-logo {
-	display: table-cell;
-	text-align: left;
+	display: inline-block;
+	text-align: center;
 	vertical-align: middle;
 	font-size: 0;
 }
 .search-box {
-	display: table-cell;
-	text-align: right;
+	display: block;
+	text-align: center;
 	vertical-align: middle;
 }
 .search-box input.search-box-text,
