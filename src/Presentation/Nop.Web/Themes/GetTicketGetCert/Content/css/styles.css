@@ -848,7 +848,7 @@ label, label + * {
 }
 .header-logo a img {
 	/*max-width: 100%;*/
-  max-width: 205px;
+  max-width: 300px;
 	opacity: 1;
 }
 
