@@ -5711,7 +5711,7 @@ pre {
     margin: 10px auto;
 }
 .search-box input.search-box-text {
-	width: 280px;
+	width: 512px;
 }
 .ui-autocomplete {
 	width: 280px !important;
@@ -6719,6 +6719,9 @@ pre {
 	height: 40px;
 }
 
+.search-box input.search-box-text {
+  width: 800px;
+}
 
 /*** NAVIGATION ***/
 
