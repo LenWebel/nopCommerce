@@ -33,6 +33,16 @@
 
     <Compile Remove="Plugins\**;Themes\**" />
     <Content Remove="Plugins\**;Themes\**" />
+    <Content Include="Plugins\ExternalAuth.ExtendedAuth\plugin.json" />
+    <Content Include="Plugins\ExternalAuth.ExtendedAuth\Views\Configure.cshtml" />
+    <Content Include="Plugins\ExternalAuth.ExtendedAuth\Views\PublicInfo.cshtml" />
+    <Content Include="Plugins\ExternalAuth.ExtendedAuth\Views\_ViewImports.cshtml" />
+    <Content Include="Plugins\Payments.BrainTree\Nop.Plugin.Payments.BrainTree.deps.json" />
+    <Content Include="Plugins\Payments.BrainTree\plugin.json" />
+    <Content Include="Plugins\Payments.BrainTree\Views\Configure.cshtml" />
+    <Content Include="Plugins\Payments.BrainTree\Views\PaymentInfo.3DS.cshtml" />
+    <Content Include="Plugins\Payments.BrainTree\Views\PaymentInfo.cshtml" />
+    <Content Include="Plugins\Payments.BrainTree\Views\_ViewImports.cshtml" />
     <Content Include="wwwroot\.well-known\acme-challenge\s9J8sEN9tGzTX1AS23l8-OcQR-cKlinEnt4XCl30LyU.MY9wP2-mey41OK5dGYj26_rJOLi02UI30p1WSUKo2Ic.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

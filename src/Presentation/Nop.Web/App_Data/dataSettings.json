@@ -1,5 +1,5 @@
 ﻿{
-  "DataConnectionString": "Data Source=localhost;Initial Catalog=GetCert;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=<YourStrong@Passw0rd>",
+  "DataConnectionString": "Data Source=localhost;Initial Catalog=GetCert;Integrated Security=True;Persist Security Info=False",
   "DataProvider": "sqlserver",
   "RawDataSettings": {}
-}
+}se

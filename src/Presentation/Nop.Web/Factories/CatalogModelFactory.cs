@@ -1389,8 +1389,8 @@ namespace Nop.Web.Factories
                         searchInDescriptions = model.sid;
                     }
 
-                    //var searchInProductTags = false;
-                    var searchInProductTags = searchInDescriptions;
+                    var searchInProductTags = true;
+                    // var searchInProductTags = searchInDescriptions;
 
                     //products
                     products = _productService.SearchProducts(
