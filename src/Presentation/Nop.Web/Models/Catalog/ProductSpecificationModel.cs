@@ -32,5 +32,11 @@ namespace Nop.Web.Models.Catalog
         /// Attribyte type ID
         /// </summary>
         public int AttributeTypeId { get; set; }
+        
+        /// <summary>
+        /// Product reference id.
+        /// </summary>
+        public int? DuplicationIndex { get; set;} 
+        
     }
 }

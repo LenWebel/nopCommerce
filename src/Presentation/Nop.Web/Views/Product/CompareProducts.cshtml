@@ -20,7 +20,7 @@
     {
         foreach (var attribute in product.SpecificationAttributeModels)
         {
-            if (specificationAttributes.FirstOrDefault(sa => sa.SpecificationAttributeId == attribute.SpecificationAttributeId) == null)
+            if (specificationAttributes.FirstOrDefault(sa => sa.SpecificationAttributeId == attribute.SpecificationAttributeId && sa.DuplicationIndex == attribute.DuplicationIndex) == null)
             {
                 specificationAttributes.Add(attribute);
             }
@@ -100,7 +100,8 @@
                                 </td>
                                 @foreach (var product in Model.Products)
                                 {
-                                    var foundProductSpec = product.SpecificationAttributeModels.FirstOrDefault(psa => psa.SpecificationAttributeId == specificationAttribute.SpecificationAttributeId);
+                                    var foundProductSpec = product.SpecificationAttributeModels
+                                        .FirstOrDefault(psa => psa.SpecificationAttributeId == specificationAttribute.SpecificationAttributeId && psa.DuplicationIndex == specificationAttribute.DuplicationIndex);
                                                                 
                                     <td style="width: @columnWidth;">
                                         @if (foundProductSpec != null)
