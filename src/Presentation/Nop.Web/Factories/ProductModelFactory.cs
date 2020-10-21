@@ -1594,7 +1594,7 @@ namespace Nop.Web.Factories
                     SpecificationAttributeName = _localizationService.GetLocalized(specAttribute, x => x.Name),
                     ColorSquaresRgb = specAttributeOption.ColorSquaresRgb,
                     AttributeTypeId = psa.AttributeTypeId,
-                    DuplicationIndex =  model.Count(a => a.AttributeTypeId == psa.AttributeTypeId && a.DuplicationIndex == 0),
+                    DuplicationIndex =  model.Count(a => a.SpecificationAttributeId == specAttribute.Id),
                 };
 
                 switch (psa.AttributeType)
