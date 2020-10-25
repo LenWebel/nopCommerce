@@ -18,7 +18,8 @@
     var specificationAttributes = new List<ProductSpecificationModel>();
     foreach (var product in Model.Products)
     {
-        foreach (var attribute in product.SpecificationAttributeModels)
+        foreach (var attribute in product.SpecificationAttributeModels
+            .OrderBy(i => i.DuplicationIndex))
         {
             if (specificationAttributes.FirstOrDefault(sa => sa.SpecificationAttributeId == attribute.SpecificationAttributeId && sa.DuplicationIndex == attribute.DuplicationIndex) == null)
             {
