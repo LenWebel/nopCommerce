@@ -141,6 +141,7 @@ UpgradeLog*.htm
 App_Data/*.mdf
 App_Data/*.ldf
 
+
 #############
 ## Windows detritus
 #############
@@ -166,6 +167,7 @@ glob:*.user
 *.patch
 *.hg
 src/Presentation/Nop.Web/.config/*
+src/Presentation/Nop.Web/App_Data/lucene_index/*
 src/Presentation/Nop.Web/App_Data/browscap.crawlersonly.xml
 src/Presentation/Nop.Web/App_Data/installedPlugins.json
 src/Presentation/Nop.Web/App_Data/plugins.json
