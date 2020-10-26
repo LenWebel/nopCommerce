@@ -1579,7 +1579,7 @@ namespace Nop.Web.Factories
 
             var model = new List<ProductSpecificationModel>();
             
-            attributes.ForEach(psa =>
+            attributes.OrderBy(i => i.DisplayOrder).ForEach(psa =>
             {
                 var specAttributeOption =
                     _specificationAttributeService.GetSpecificationAttributeOptionById(
