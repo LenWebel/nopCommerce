@@ -67,7 +67,7 @@ body {
     max-width: 100%;
 	overflow-x: hidden;
 	background-color: #fff;
-	font: normal 14px 'Days One', sans-serif;
+	font: normal 14px 'Roboto', sans-serif;
     color: #777;
 }
 h1,h2,h3,h4,h5,h6 {
@@ -96,7 +96,7 @@ textarea, select {
 }
 input, textarea, select, button {
 	font-size: 14px;
-	font-family:  'Days One', sans-serif;
+	font-family:  'Roboto', sans-serif;
 	color: #777;
 }
 textarea {
@@ -5347,7 +5347,7 @@ label, label + * {
 	/*override jQuery UI styles, do not delete doubled properties*/
 	line-height: normal;
 	font-size: 14px;
-	font-family: 'Days One', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	color: #777;
 }
 .profile-info-box .user-details {
@@ -5369,7 +5369,7 @@ label, label + * {
 	/*override jQuery UI styles, do not delete doubled properties*/
 	line-height: normal;
 	font-size: 14px;
-	font-family: 'Days One',  sans-serif;
+	font-family: 'Roboto',  sans-serif;
 	color: #777;
 }
 .latest-posts .topic {
