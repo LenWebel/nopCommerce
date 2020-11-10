@@ -37,9 +37,13 @@
         var cultureToUse = NopCommonDefaults.DefaultLocalePattern; //Default regionalisation to use
 
         if (fileProvider.DirectoryExists(fileProvider.Combine(WebHostEnvironment.WebRootPath, string.Format(localePattern, currentCulture.Name))))
+        {
             cultureToUse = currentCulture.Name;
+        }
         else if (fileProvider.DirectoryExists(fileProvider.Combine(WebHostEnvironment.WebRootPath, string.Format(localePattern, currentCulture.TwoLetterISOLanguageName))))
+        {
             cultureToUse = currentCulture.TwoLetterISOLanguageName;
+        }
 
         return cultureToUse;
     }

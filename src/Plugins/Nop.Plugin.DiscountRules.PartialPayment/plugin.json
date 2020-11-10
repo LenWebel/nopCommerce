@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Discount requirements",
+  "FriendlyName": "Partial payments",
+  "SystemName": "DiscountRequirement.PartialPayment",
+  "Version": "1.34",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "Len Webel",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.DiscountRules.PartialPayment.dll",
+  "Description": "This plugin allows you to configure partial payments"
+}
