@@ -72,11 +72,7 @@
     <Content Update="Themes\GetTicketGetCert\Views\Shared\_ColumnsOne.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
-
-    <None Include="Themes\GetTicketGetCert\Views\Home\Index2.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-
+    
     <None Include="Themes\GetTicketGetCert\Views\Shared\_HeaderHome.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
