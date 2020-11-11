@@ -168,7 +168,7 @@ namespace Nop.Services.Orders
                 _productAttributeParser.GetGiftCardAttribute(shoppingCartItem.AttributesXml, out var giftCardRecipientName2, out var _, out var giftCardSenderName2, out var _, out var _);
 
                 var giftCardsAreEqual = giftCardRecipientName1.Equals(giftCardRecipientName2, StringComparison.InvariantCultureIgnoreCase)
-                    && giftCardSenderName1.Equals(giftCardSenderName2, StringComparison.InvariantCultureIgnoreCase);
+                                        && giftCardSenderName1.Equals(giftCardSenderName2, StringComparison.InvariantCultureIgnoreCase);
                 if (!giftCardsAreEqual)
                     return false;
             }
@@ -181,13 +181,13 @@ namespace Nop.Services.Orders
                 if (!customerEnteredPricesEqual)
                     return false;
             }
-            
-            if (!product.IsRental) 
+
+            if (!product.IsRental)
                 return true;
 
             //rental products
             var rentalInfoEqual = shoppingCartItem.RentalStartDateUtc == rentalStartDate && shoppingCartItem.RentalEndDateUtc == rentalEndDate;
-            
+
             return rentalInfoEqual;
         }
 
@@ -299,8 +299,8 @@ namespace Nop.Services.Orders
         public virtual int DeleteExpiredShoppingCartItems(DateTime olderThanUtc)
         {
             var query = from sci in _sciRepository.Table
-                        where sci.UpdatedOnUtc < olderThanUtc
-                        select sci;
+                where sci.UpdatedOnUtc < olderThanUtc
+                select sci;
 
             var cartItems = query.ToList();
             foreach (var cartItem in cartItems)
@@ -388,13 +388,12 @@ namespace Nop.Services.Orders
             foreach (var requiredProduct in requiredProducts)
             {
                 var productsRequiringRequiredProduct = GetProductsRequiringProduct(cart, requiredProduct);
-                
+
                 //get the required quantity of the required product
                 var requiredProductRequiredQuantity = quantity * requiredProductQuantity +
-
-                    cart.Where(ci => productsRequiringRequiredProduct.Any(p => p.Id == ci.ProductId))
-                        .Where(item => item.Id != shoppingCartItemId)
-                        .Sum(item => item.Quantity * requiredProductQuantity);
+                                                      cart.Where(ci => productsRequiringRequiredProduct.Any(p => p.Id == ci.ProductId))
+                                                          .Where(item => item.Id != shoppingCartItemId)
+                                                          .Sum(item => item.Quantity * requiredProductQuantity);
 
                 //whether required product is already in the cart in the required quantity
                 var quantityToAdd = requiredProductRequiredQuantity - (cart.FirstOrDefault(item => item.ProductId == requiredProduct.Id)?.Quantity ?? 0);
@@ -404,7 +403,7 @@ namespace Nop.Services.Orders
                 //prepare warning message
                 var requiredProductName = WebUtility.HtmlEncode(_localizationService.GetLocalized(requiredProduct, x => x.Name));
                 var requiredProductWarning = _catalogSettings.UseLinksInRequiredProductWarnings
-                    ? string.Format(warningLocale, $"<a href=\"{urlHelper.RouteUrl(nameof(Product), new { SeName = _urlRecordService.GetSeName(requiredProduct) })}\">{requiredProductName}</a>", requiredProductRequiredQuantity)
+                    ? string.Format(warningLocale, $"<a href=\"{urlHelper.RouteUrl(nameof(Product), new {SeName = _urlRecordService.GetSeName(requiredProduct)})}\">{requiredProductName}</a>", requiredProductRequiredQuantity)
                     : string.Format(warningLocale, requiredProductName, requiredProductRequiredQuantity);
 
                 //add to cart (if possible)
@@ -549,7 +548,8 @@ namespace Nop.Services.Orders
                                 if (maximumQuantityCanBeAdded <= 0)
                                 {
                                     var productAvailabilityRange = _dateRangeService.GetProductAvailabilityRangeById(product.ProductAvailabilityRangeId);
-                                    var warning = productAvailabilityRange == null ? _localizationService.GetResource("ShoppingCart.OutOfStock")
+                                    var warning = productAvailabilityRange == null
+                                        ? _localizationService.GetResource("ShoppingCart.OutOfStock")
                                         : string.Format(_localizationService.GetResource("ShoppingCart.AvailabilityRange"),
                                             _localizationService.GetLocalized(productAvailabilityRange, range => range.Name));
                                     warnings.Add(warning);
@@ -572,7 +572,8 @@ namespace Nop.Services.Orders
                                 if (maximumQuantityCanBeAdded <= 0)
                                 {
                                     var productAvailabilityRange = _dateRangeService.GetProductAvailabilityRangeById(product.ProductAvailabilityRangeId);
-                                    var warning = productAvailabilityRange == null ? _localizationService.GetResource("ShoppingCart.OutOfStock")
+                                    var warning = productAvailabilityRange == null
+                                        ? _localizationService.GetResource("ShoppingCart.OutOfStock")
                                         : string.Format(_localizationService.GetResource("ShoppingCart.AvailabilityRange"),
                                             _localizationService.GetLocalized(productAvailabilityRange, range => range.Name));
                                     warnings.Add(warning);
@@ -590,7 +591,8 @@ namespace Nop.Services.Orders
                             {
                                 //maybe, is it better  to display something like "No such product/combination" message?
                                 var productAvailabilityRange = _dateRangeService.GetProductAvailabilityRangeById(product.ProductAvailabilityRangeId);
-                                var warning = productAvailabilityRange == null ? _localizationService.GetResource("ShoppingCart.OutOfStock")
+                                var warning = productAvailabilityRange == null
+                                    ? _localizationService.GetResource("ShoppingCart.OutOfStock")
                                     : string.Format(_localizationService.GetResource("ShoppingCart.AvailabilityRange"),
                                         _localizationService.GetLocalized(productAvailabilityRange, range => range.Name));
                                 warnings.Add(warning);
@@ -759,9 +761,7 @@ namespace Nop.Services.Orders
                         var productAttribute = _productAttributeService.GetProductAttributeById(a2.ProductAttributeId);
 
                         var textPrompt = _localizationService.GetLocalized(a2, x => x.TextPrompt);
-                        var notFoundWarning = !string.IsNullOrEmpty(textPrompt) ?
-                            textPrompt :
-                            string.Format(_localizationService.GetResource("ShoppingCart.SelectAttribute"), _localizationService.GetLocalized(productAttribute, a => a.Name));
+                        var notFoundWarning = !string.IsNullOrEmpty(textPrompt) ? textPrompt : string.Format(_localizationService.GetResource("ShoppingCart.SelectAttribute"), _localizationService.GetLocalized(productAttribute, a => a.Name));
 
                         warnings.Add(notFoundWarning);
                     }
@@ -828,7 +828,21 @@ namespace Nop.Services.Orders
                 {
                     warnings.Add(string.Format(_localizationService.GetResource("ShoppingCart.TextboxMaximumLength"), _localizationService.GetLocalized(productAttribute, a => a.Name), pam.ValidationMaxLength.Value));
                 }
+
+                
+                //todo ideally we want to toggle this functionality per product.
+                if (pam.AttributeControlType == AttributeControlType.Datepicker)
+                {
+                    var valuesStr = _productAttributeParser.ParseValues(attributesXml, pam.Id);
+                    var enteredDate = valuesStr.FirstOrDefault();
+                    var convertedDate = DateTime.Parse(enteredDate);
+                    var convertedDateUtc = DateTime.SpecifyKind(convertedDate, DateTimeKind.Utc);
+                    var now = DateTime.UtcNow;
+                    if (convertedDateUtc.CompareTo(now) <= 0)
+                        warnings.Add(_localizationService.GetResource("Products.ProductAttributes.DateInFuture"));
+                }
             }
+
 
             if (warnings.Any())
                 return warnings;
@@ -1328,14 +1342,14 @@ namespace Nop.Services.Orders
             if (combination?.OverriddenPrice.HasValue ?? false)
             {
                 finalPrice = _priceCalculationService.GetFinalPrice(product,
-                        customer,
-                        combination.OverriddenPrice.Value,
-                        decimal.Zero,
-                        includeDiscounts,
-                        quantity,
-                        product.IsRental ? rentalStartDate : null,
-                        product.IsRental ? rentalEndDate : null,
-                        out discountAmount, out appliedDiscounts);
+                    customer,
+                    combination.OverriddenPrice.Value,
+                    decimal.Zero,
+                    includeDiscounts,
+                    quantity,
+                    product.IsRental ? rentalStartDate : null,
+                    product.IsRental ? rentalEndDate : null,
+                    out discountAmount, out appliedDiscounts);
             }
             else
             {
@@ -1499,7 +1513,7 @@ namespace Nop.Services.Orders
                 shoppingCartItem.UpdatedOnUtc = DateTime.UtcNow;
 
                 _sciRepository.Update(shoppingCartItem);
-                
+
                 //event notification
                 _eventPublisher.EntityUpdated(shoppingCartItem);
             }
