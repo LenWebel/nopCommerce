@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Image",
+  "SystemName": "Widgets.Image",
+  "Version": "1.38",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "Webel team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.Image.dll",
+  "Description": "This plugin allows you to change the contents of main image"
+}

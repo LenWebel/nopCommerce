@@ -12,7 +12,6 @@ namespace Nop.Web.Components
         {
             _commonModelFactory = commonModelFactory;
         }
-
         public IViewComponentResult Invoke()
         {
             var model = _commonModelFactory.PrepareAdminHeaderLinksModel();

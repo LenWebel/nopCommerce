@@ -80,6 +80,10 @@
     <Content Update="Themes\GetTicketGetCert\Views\Shared\_ColumnsTwo.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
+
+    <Content Update="Themes\GetTicketGetCert\Views\HeaderLinks\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

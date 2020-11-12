@@ -816,7 +816,7 @@ label, label + * {
 
 
 .admin-header-links {
-  background-color: #333;
+  background-color: #33393e;
   text-align: center;
   color: #eee;
 }
@@ -851,7 +851,6 @@ label, label + * {
 }
 
 .header-searchbox-background {
-  background-image: url("/Themes/GetTicketGetCert/Content/images/getticket-workforce.jpg");
   height: 900px;
   background-size: cover;
   display: flex;
@@ -863,7 +862,8 @@ label, label + * {
 .header-upper {
   position: relative;
   z-index: 1;
-  border-bottom: 1px solid #ddd;
+  background-color: #333;
+  color: white;
 }
 
 .header-selectors-wrapper {
@@ -944,7 +944,6 @@ label, label + * {
   width: 70%;
   max-width: 400px;
   margin: 10px auto 0;
-  background-color: #f6f6f6;
   padding: 0 20px;
 }
 
@@ -7521,7 +7520,7 @@ pre {
   }
 
   .header-selectors-wrapper {
-    float: left;
+    float: right;
     border: none;
     padding: 0;
   }
@@ -7714,14 +7713,12 @@ pre {
 
   /*** NAVIGATION ***/
   .header-menu {
+    display: flex;
     position: relative;
     z-index: 5;
-    width: 980px;
-    margin: 0 auto 30px;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    padding: 25px 0;
-    text-align: center;
+    width: 100%;
+    padding: 6px 0;
+    background-color: #002321;    
   }
 
   .menu-toggle,
@@ -7754,7 +7751,7 @@ pre {
     padding: 5px 10px;
     line-height: 20px;
     font-size: 17px; /*reset zeroing*/
-    color: #555;
+    color: white;
     cursor: pointer;
   }
 
@@ -8346,7 +8343,8 @@ pre {
 
   /*** NAVIGATION ***/
   .header-menu {
-    width: 1200px;
+    width: 100%;
+    /*width: 1200px;*/
   }
 
   .header-menu > ul > li {
