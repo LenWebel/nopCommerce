@@ -593,7 +593,8 @@ namespace Nop.Web.Factories
             var categoriesCacheKey = _cacheKeyService.PrepareKeyForDefaultCache(NopModelCacheDefaults.CategoryHomepageKey, 
                 pictureSize,
                 _workContext.WorkingLanguage,
-                _webHelper.IsCurrentConnectionSecured());
+                _webHelper.IsCurrentConnectionSecured(),
+                _storeContext.CurrentStore);
 
             var model = _staticCacheManager.Get(categoriesCacheKey, () =>
                 _categoryService.GetAllCategoriesDisplayedOnHomepage()

@@ -62,7 +62,7 @@ namespace Nop.Web.Infrastructure.Cache
         /// {1} : language ID
         /// {2} : is connection SSL secured (included in a category picture URL)
         /// </remarks>
-        public static CacheKey CategoryHomepageKey => new CacheKey("Nop.pres.category.homepage-{0}-{1}-{2}", CategoryHomepagePrefixCacheKey);
+        public static CacheKey CategoryHomepageKey => new CacheKey("Nop.pres.category.homepage-{0}-{1}-{2}-{3}", CategoryHomepagePrefixCacheKey);
         public static string CategoryHomepagePrefixCacheKey => "Nop.pres.category.homepage";
 
         /// <summary>
