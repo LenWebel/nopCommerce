@@ -978,7 +978,7 @@ label, label + * {
 
 .header-logo-home a img {
   /*max-width: 100%;*/
-  max-width: 500px;
+  max-width: 300px;
   opacity: 1;
 }
 
