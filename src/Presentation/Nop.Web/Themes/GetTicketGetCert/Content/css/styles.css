@@ -6598,7 +6598,7 @@ pre {
 
   .search-box input.search-box-text {
     flex-grow: 1;
-    max-width: 75%;
+    max-width: 40%;
   }
 
   .ui-autocomplete {

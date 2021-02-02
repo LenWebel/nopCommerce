@@ -33,6 +33,7 @@
 
     <Compile Remove="Plugins\**;Themes\**" />
     <Content Remove="Plugins\**;Themes\**" />
+    <Content Include="wwwroot\.well-known\acme-challenge\123456789" />
     <EmbeddedResource Remove="Plugins\**;Themes\**" />
     <None Remove="Plugins\**;Themes\**" />
     <Content Include="App_Data\dataSettings.json" />
@@ -96,7 +97,6 @@
     <Folder Include="Areas\VendorAdmin\Data\" />
     <Folder Include="Areas\VendorAdmin\Models\" />
     <Folder Include="Plugins\" />
-    <Folder Include="wwwroot\.well-known\acme-challenge" />
   </ItemGroup>
 
   <ItemGroup>
