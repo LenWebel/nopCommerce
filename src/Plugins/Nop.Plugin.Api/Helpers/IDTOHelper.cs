@@ -31,6 +31,7 @@ namespace Nop.Plugin.Api.Helpers
         StoreDto PrepareStoreDTO(Store store);
         LanguageDto PrepareLanguageDto(Language language);
         ProductAttributeDto PrepareProductAttributeDTO(ProductAttribute productAttribute);
+        ProductAttributeMappingDto PrepareProductAttributeMappingDTO(ProductAttributeMapping productAttribute);
         ProductSpecificationAttributeDto PrepareProductSpecificationAttributeDto(ProductSpecificationAttribute productSpecificationAttribute);
         SpecificationAttributeDto PrepareSpecificationAttributeDto(SpecificationAttribute specificationAttribute);
         ManufacturerDto PrepareManufacturerDto(Manufacturer manufacturer);

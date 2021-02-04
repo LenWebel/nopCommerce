@@ -82,8 +82,7 @@ namespace Nop.Plugin.Api.Infrastructure
 
                     //a.UseExceptionHandler("/api/error/500/Error");
 
-                    a
-                    .UseRouting()
+                    a.UseRouting()
                     .UseAuthentication()
                     .UseAuthorization()
                     .UseEndpoints(endpoints =>

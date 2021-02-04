@@ -144,21 +144,23 @@ namespace Nop.Plugin.Api.Helpers
 
             foreach (var language in allLanguages)
             {
-                var localizedNameDto = new LocalizedNameDto
-                {
-                    LanguageId = language.Id,
-                    LocalizedName = _localizationService.GetLocalized(product, x => x.Name, language.Id)
-                };
+                var localizedNameDto = new LocalizedNameDto {LanguageId = language.Id, LocalizedName = _localizationService.GetLocalized(product, x => x.Name, language.Id)};
 
                 productDto.LocalizedNames.Add(localizedNameDto);
             }
 
+            productDto.ProductAttributeMappings = _productAttributeService.GetProductAttributeMappingsByProductId(product.Id)
+                .Select(PrepareProductAttributeMappingDTO)
+                .ToList();
+
             return productDto;
         }
+
         public ImageMappingDto PrepareProductPictureDTO(ProductPicture productPicture)
         {
             return PrepareProductImageDto(productPicture);
         }
+
         protected ImageMappingDto PrepareProductImageDto(ProductPicture productPicture)
         {
             ImageMappingDto imageMapping = null;
@@ -183,6 +185,7 @@ namespace Nop.Plugin.Api.Helpers
 
             return imageMapping;
         }
+
         public CategoryDto PrepareCategoryDTO(Category category)
         {
             var categoryDto = category.ToDto();
@@ -207,11 +210,7 @@ namespace Nop.Plugin.Api.Helpers
 
             foreach (var language in allLanguages)
             {
-                var localizedNameDto = new LocalizedNameDto
-                {
-                    LanguageId = language.Id,
-                    LocalizedName = _localizationService.GetLocalized(category, x => x.Name, language.Id)
-                };
+                var localizedNameDto = new LocalizedNameDto {LanguageId = language.Id, LocalizedName = _localizationService.GetLocalized(category, x => x.Name, language.Id)};
 
                 categoryDto.LocalizedNames.Add(localizedNameDto);
             }
@@ -227,7 +226,7 @@ namespace Nop.Plugin.Api.Helpers
 
                 orderDto.OrderItems = _orderService.GetOrderItems(order.Id).Select(PrepareOrderItemDTO).ToList();
                 orderDto.Shipments = _shipmentService.GetShipmentsByOrderId(order.Id).Select(PrepareShippingItemDTO).ToList();
-                
+
                 var billingAddress = _addressService.GetAddressById(order.BillingAddressId);
                 orderDto.BillingAddress = billingAddress.ToDto();
 
@@ -236,7 +235,7 @@ namespace Nop.Plugin.Api.Helpers
                     var shippingAddress = _addressService.GetAddressById(order.ShippingAddressId.Value);
                     orderDto.ShippingAddress = shippingAddress.ToDto();
                 }
-                
+
                 var customerDto = _customerApiService.GetCustomerById(order.CustomerId);
 
                 if (customerDto != null)
@@ -250,7 +249,6 @@ namespace Nop.Plugin.Api.Helpers
             {
                 throw;
             }
-            
         }
 
         public ShoppingCartItemDto PrepareShoppingCartItemDTO(ShoppingCartItem shoppingCartItem)
@@ -275,8 +273,8 @@ namespace Nop.Plugin.Api.Helpers
                 TotalWeight = shipment.TotalWeight,
                 TrackingNumber = shipment.TrackingNumber
             };
-
         }
+
         public OrderItemDto PrepareOrderItemDTO(OrderItem orderItem)
         {
             var dto = orderItem.ToDto();
@@ -319,6 +317,15 @@ namespace Nop.Plugin.Api.Helpers
         public ProductAttributeDto PrepareProductAttributeDTO(ProductAttribute productAttribute)
         {
             return productAttribute.ToDto();
+        }
+
+        public ProductAttributeMappingDto PrepareProductAttributeMappingDTO(ProductAttributeMapping productAttribute)
+        {
+            var mapping = productAttribute.ToDto();
+            mapping.ProductAttributeValues = _productAttributeService.GetProductAttributeValues(productAttribute.Id)
+                .Select(PrepareProductAttributeValueDto)
+                .ToList();
+            return mapping;
         }
 
         private void PrepareProductImages(IEnumerable<ProductPicture> productPictures, ProductDto productDto)
@@ -388,8 +395,32 @@ namespace Nop.Plugin.Api.Helpers
             }
         }
 
-        private ProductAttributeMappingDto PrepareProductAttributeMappingDto(
-             ProductAttributeMapping productAttributeMapping)
+        private ProductAttributeValueDto PrepareProductAttributeValueDto(ProductAttributeValue productAttributeValue)
+        {
+            ProductAttributeValueDto productAttributeValueDto = null;
+            if (productAttributeValue != null)
+            {
+                productAttributeValueDto = new ProductAttributeValueDto
+                {
+                    Id = productAttributeValue.Id,
+                    Cost = productAttributeValue.Cost,
+                    Name = productAttributeValue.Name,
+                    Quantity = productAttributeValue.Quantity,
+                    DisplayOrder = productAttributeValue.DisplayOrder,
+                    PictureId = productAttributeValue.PictureId,
+                    PriceAdjustment = productAttributeValue.PriceAdjustment,
+                    WeightAdjustment = productAttributeValue.WeightAdjustment,
+                    AssociatedProductId = productAttributeValue.AssociatedProductId,
+                    ColorSquaresRgb = productAttributeValue.ColorSquaresRgb,
+                    IsPreSelected = productAttributeValue.IsPreSelected,
+                    AttributeValueTypeId = productAttributeValue.AttributeValueTypeId,
+                };
+            }
+
+            return productAttributeValueDto;
+        }
+
+        private ProductAttributeMappingDto PrepareProductAttributeMappingDto(ProductAttributeMapping productAttributeMapping)
         {
             ProductAttributeMappingDto productAttributeMappingDto = null;
 
@@ -405,13 +436,9 @@ namespace Nop.Plugin.Api.Helpers
                     AttributeControlTypeId = productAttributeMapping.AttributeControlTypeId,
                     DisplayOrder = productAttributeMapping.DisplayOrder,
                     IsRequired = productAttributeMapping.IsRequired,
-                    //TODO: Somnath
-                    //ProductAttributeValues = _productAttributeService.GetProductAttributeValueById(productAttributeMapping.Id).
-                    //                                                .Select(x =>
-                    //                                                            PrepareProductAttributeValueDto(x,
-                    //                                                                                            productAttributeMapping
-                    //                                                                                                .Product))
-                    //                                                .ToList()
+                    ProductAttributeValues = _productAttributeService.GetProductAttributeValues(productAttributeMapping.Id)
+                        .Select(PrepareProductAttributeValueDto)
+                        .ToList()
                 };
             }
 
@@ -500,11 +527,7 @@ namespace Nop.Plugin.Api.Helpers
 
             foreach (var language in allLanguages)
             {
-                var localizedNameDto = new LocalizedNameDto
-                {
-                    LanguageId = language.Id,
-                    LocalizedName = _localizationService.GetLocalized(manufacturer, x => x.Name, language.Id)
-                };
+                var localizedNameDto = new LocalizedNameDto {LanguageId = language.Id, LocalizedName = _localizationService.GetLocalized(manufacturer, x => x.Name, language.Id)};
 
                 manufacturerDto.LocalizedNames.Add(localizedNameDto);
             }
@@ -512,23 +535,18 @@ namespace Nop.Plugin.Api.Helpers
             return manufacturerDto;
         }
 
-        
+
         public TaxCategoryDto PrepareTaxCategoryDTO(TaxCategory taxCategory)
         {
             var taxRateModel = new TaxCategoryDto()
             {
-                Id = taxCategory.Id,
-                Name = taxCategory.Name,
-                DisplayOrder = taxCategory.DisplayOrder,
-                Rate = _settingService.GetSettingByKey<decimal>(string.Format(Configurations.FixedRateSettingsKey, taxCategory.Id))
+                Id = taxCategory.Id, Name = taxCategory.Name, DisplayOrder = taxCategory.DisplayOrder, Rate = _settingService.GetSettingByKey<decimal>(string.Format(Configurations.FixedRateSettingsKey, taxCategory.Id))
             };
 
             return taxRateModel;
         }
-
     }
 }
-
 
 
 //protected ImageMappingDto PrepareProductImageDto(ProductPicture productPicture)

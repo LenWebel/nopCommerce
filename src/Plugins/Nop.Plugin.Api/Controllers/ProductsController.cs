@@ -169,6 +169,7 @@ namespace Nop.Plugin.Api.Controllers
 
             var productDto = _dtoHelper.PrepareProductDTO(product);
 
+
             var productsRootObject = new ProductsRootObjectDto();
 
             productsRootObject.Products.Add(productDto);

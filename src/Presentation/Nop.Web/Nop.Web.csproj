@@ -109,6 +109,13 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Plugins\Nop.Plugin.Misc.Api\Areas\Admin\Views\ApiAdmin\Settings.cshtml" />
+    <_ContentIncludedByDefault Remove="Plugins\Nop.Plugin.Misc.Api\Areas\Admin\Views\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Plugins\Nop.Plugin.Misc.Api\Nop.Plugin.Misc.Api.deps.json" />
+    <_ContentIncludedByDefault Remove="Plugins\Nop.Plugin.Misc.Api\plugin.json" />
+  </ItemGroup>
+
   <!-- This target execute after "Build" target.
     We use it to clean up folder with plugins from unnecessary and obsolete libraries. -->
   <Target Name="NopTarget" AfterTargets="Build">
