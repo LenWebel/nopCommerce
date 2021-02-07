@@ -5,7 +5,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <OutputPath>..\..\Presentation\Nop.Web\Plugins\Api</OutputPath>
+    <OutputPath>..\..\Presentation\Nop.Web\Plugins\Nop.Plugin.Api</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
   </PropertyGroup>
   

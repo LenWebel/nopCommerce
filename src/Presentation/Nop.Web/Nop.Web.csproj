@@ -114,6 +114,10 @@
     <_ContentIncludedByDefault Remove="Plugins\Nop.Plugin.Misc.Api\Areas\Admin\Views\_ViewImports.cshtml" />
     <_ContentIncludedByDefault Remove="Plugins\Nop.Plugin.Misc.Api\Nop.Plugin.Misc.Api.deps.json" />
     <_ContentIncludedByDefault Remove="Plugins\Nop.Plugin.Misc.Api\plugin.json" />
+    <_ContentIncludedByDefault Remove="Plugins\Api\Areas\Admin\Views\ApiAdmin\Settings.cshtml" />
+    <_ContentIncludedByDefault Remove="Plugins\Api\Areas\Admin\Views\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Plugins\Api\Nop.Plugin.Api.deps.json" />
+    <_ContentIncludedByDefault Remove="Plugins\Api\plugin.json" />
   </ItemGroup>
 
   <!-- This target execute after "Build" target.
