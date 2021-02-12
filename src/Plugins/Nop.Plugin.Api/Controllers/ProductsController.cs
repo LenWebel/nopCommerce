@@ -208,6 +208,8 @@ namespace Nop.Plugin.Api.Controllers
 
             UpdateAssociatedProducts(product, productDelta.Dto.AssociatedProductIds);
 
+            UpdateProductAttributes(product, productDelta);
+            
             //search engine name
             var seName = _urlRecordService.ValidateSeName(product, productDelta.Dto.SeName, product.Name, true);
             _urlRecordService.SaveSlug(product, seName, 0);
