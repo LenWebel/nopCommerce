@@ -59,7 +59,7 @@ namespace Nop.Plugin.Api.DTO.Products
         {
             get
             {
-                return ((AttributeControlType)AttributeControlTypeId).ToString();
+                return ((AttributeControlType)this.AttributeControlTypeId).ToString();
             }
             set
             {

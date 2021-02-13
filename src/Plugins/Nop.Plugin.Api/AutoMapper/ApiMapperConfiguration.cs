@@ -68,8 +68,9 @@ namespace Nop.Plugin.Api.AutoMapper
 
             CreateMap<ProductAttributeValue, ProductAttributeValueDto>();
 
-            CreateMap<ProductAttribute, ProductAttributeDto>();
+            CreateMap<ProductAttribute, ProductAttributeDto>(); 
             CreateMap<ProductAttributeMapping, ProductAttributeMappingDto>();
+            CreateMap<ProductAttributeMappingDto, ProductAttributeMapping>();
 
             CreateMap<ProductSpecificationAttribute, ProductSpecificationAttributeDto>();
 

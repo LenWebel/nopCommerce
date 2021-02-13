@@ -10,7 +10,9 @@ namespace Nop.Services.Catalog
         /// <summary>
         /// A value indicating whether this product attribute should have values
         /// </summary>
-        /// <param name="productAttributeMapping">Product attribute mapping</param>
+        /// <param name="
+        ///
+        /// productAttributeMapping">Product attribute mapping</param>
         /// <returns>Result</returns>
         public static bool ShouldHaveValues(this ProductAttributeMapping productAttributeMapping)
         {

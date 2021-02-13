@@ -11,6 +11,11 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets the product identifier
         /// </summary>
         public int ProductId { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the product attribute name
+        /// </summary>
+        public string ProductAttributeName { get; set; }
 
         /// <summary>
         /// Gets or sets the product attribute identifier

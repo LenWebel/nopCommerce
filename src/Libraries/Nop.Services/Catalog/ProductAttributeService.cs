@@ -205,9 +205,27 @@ namespace Nop.Services.Catalog
             var allCacheKey = _cacheKeyService.PrepareKeyForDefaultCache(NopCatalogDefaults.ProductAttributeMappingsAllCacheKey, productId);
 
             var query = from pam in _productAttributeMappingRepository.Table
+                join atb in _productAttributeRepository.Table on pam.ProductAttributeId equals atb.Id
                 orderby pam.DisplayOrder, pam.Id
                 where pam.ProductId == productId
-                select pam;
+                select new ProductAttributeMapping()
+                {
+                    Id = pam.Id,
+                    DefaultValue = pam.DefaultValue,
+                    DisplayOrder = pam.DisplayOrder,
+                    IsRequired = pam.IsRequired,
+                    ProductId = pam.ProductId,
+                    TextPrompt = pam.TextPrompt,
+                    AttributeControlType = pam.AttributeControlType,
+                    ConditionAttributeXml = pam.ConditionAttributeXml,
+                    ProductAttributeId = pam.ProductAttributeId,
+                    ProductAttributeName = atb.Name,
+                    ValidationMaxLength = pam.ValidationMaxLength,
+                    ValidationMinLength = pam.ValidationMinLength,
+                    AttributeControlTypeId = pam.AttributeControlTypeId,
+                    ValidationFileAllowedExtensions = pam.ValidationFileAllowedExtensions,
+                    ValidationFileMaximumSize = pam.ValidationFileMaximumSize
+                } ;
 
             var attributes = query.ToCachedList(allCacheKey) ?? new List<ProductAttributeMapping>();
 
