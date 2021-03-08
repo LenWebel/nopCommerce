@@ -281,7 +281,7 @@ namespace Nop.Plugin.Api.Controllers
 
             UpdateDiscountMappings(product, productDelta.Dto.DiscountIds);
 
-            UpdateStoreMappings(product, productDelta.Dto.StoreIds);ve
+            UpdateStoreMappings(product, productDelta.Dto.StoreIds);
 
             UpdateAclRoles(product, productDelta.Dto.RoleIds);
 
