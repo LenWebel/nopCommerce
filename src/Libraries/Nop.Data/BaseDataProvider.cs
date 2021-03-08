@@ -270,6 +270,7 @@ namespace Nop.Data
         {
             using var dataContext = CreateDataConnection();
             var command = new CommandInfo(dataContext, procedureName, parameters);
+            dataContext.CommandTimeout = 200;
             var rez = command.QueryProc<T>()?.ToList();
             UpdateOutputParameters(dataContext, parameters);
             return rez ?? new List<T>();
