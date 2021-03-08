@@ -32,6 +32,9 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Products.ProductAttributes.Attributes.Fields.Attribute")]
         public string ProductAttribute { get; set; }
+        
+        [NopResourceDisplayName("Admin.Catalog.Products.ProductAttributes.Attributes.Fields.AttributeName")]
+        public string ProductAttributeName { get; set; }
 
         public IList<SelectListItem> AvailableProductAttributes { get; set; }
 

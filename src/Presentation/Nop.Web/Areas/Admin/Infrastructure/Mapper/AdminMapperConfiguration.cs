@@ -1544,6 +1544,7 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
                 .ForMember(model => model.SeName, options => options.Ignore())
                 .ForMember(model => model.VendorAttributes, options => options.Ignore())
                 .ForMember(model => model.VendorNoteSearchModel, options => options.Ignore());
+
             CreateMap<VendorModel, Vendor>()
                 .ForMember(entity => entity.Deleted, options => options.Ignore());
 

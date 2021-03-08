@@ -53,7 +53,7 @@ namespace Nop.Web.Areas.Admin.Models.Vendors
         public bool Active { get; set; }
 
         [NopResourceDisplayName("Admin.Vendors.Fields.DisplayOrder")]
-        public int DisplayOrder { get; set; }        
+        public int DisplayOrder { get; set; }
 
         [NopResourceDisplayName("Admin.Vendors.Fields.MetaKeywords")]
         public string MetaKeywords { get; set; }
@@ -72,6 +72,12 @@ namespace Nop.Web.Areas.Admin.Models.Vendors
 
         [NopResourceDisplayName("Admin.Vendors.Fields.AllowCustomersToSelectPageSize")]
         public bool AllowCustomersToSelectPageSize { get; set; }
+
+        [NopResourceDisplayName("Admin.Vendors.Fields.Longitude")]
+        public bool Longitude { get; set; }
+
+        [NopResourceDisplayName("Admin.Vendors.Fields.Latitude")]
+        public bool Latitude { get; set; }
 
         [NopResourceDisplayName("Admin.Vendors.Fields.PageSizeOptions")]
         public string PageSizeOptions { get; set; }
@@ -92,7 +98,7 @@ namespace Nop.Web.Areas.Admin.Models.Vendors
         #endregion
 
         #region Nested classes
-        
+
         public partial class VendorAttributeModel : BaseNopEntityModel
         {
             public VendorAttributeModel()
